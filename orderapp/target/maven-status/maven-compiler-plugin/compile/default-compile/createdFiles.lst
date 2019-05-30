@@ -1,0 +1,13 @@
+com/adobe/prj/web/ProductController.class
+com/adobe/prj/dao/ProductDao.class
+com/adobe/prj/service/OrderService.class
+com/adobe/prj/dao/ProductDaoJpaImpl.class
+com/adobe/prj/entity/Item.class
+com/adobe/prj/entity/Product.class
+com/adobe/prj/entity/Order.class
+com/adobe/prj/AppInitializer.class
+com/adobe/prj/client/SpringClient.class
+com/adobe/prj/WebConfig.class
+com/adobe/prj/rest/OrderRestController.class
+com/adobe/prj/rest/ProductRestController.class
+com/adobe/prj/entity/Customer.class
