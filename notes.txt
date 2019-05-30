@@ -1,0 +1,948 @@
+va
+Banuprakash C
+CO-Founder: Lucida Technologies Pvt Ltd
+CO-Founder: Advantech
+
+banu@lucidatechnologies.com
+banuprakashc@yahoo.co.in
+https://shrib.com/#banu
+-------------------------
+
+	SOLID Design Principles?
+
+		S ==> Single Responsibility
+		O ==> Open Close Principle
+		L ==> Liskov Substitution Principle
+		I ==> Interface Segregation
+		D ==> dependency Injection
+
+	---------
+
+	Relationship between Objects:
+		a) Generalization and Specialization
+		b) Realization
+		c) Assoication
+		d) Uses A Relationship
+
+	Logically Grouping of classes in Enterprise applications:
+		a) Entity / Domain / Model
+		b) DAO [ Data Access Objects]
+		c) Service 
+		d) Business 
+		e) Utility
+		f) UI
+		g) Handlers
+		i) DTO / VO
+
+		-----------------------------
+
+		Realization Relationship is one where a component/object will realize
+		the behaviour specified by other in order to communicate.
+		This is done using interfaces.
+
+		Why we should program to interfaces?
+			It helps in :
+				DESIGN
+				IMPLEMENTATION
+				TESTING
+				INTEGERATION
+				LOOSE COUPLING
+
+;
+		String name = "java.lang.String";
+ 		name = "com.adobe.prj.dao.MobileDaoMongoImpl";
+
+		Class.forName(name).newInstance();
+
+		---------------------------------------------------
+
+		class PlantFactory {
+
+			static Plants[] getPlants(String season) {
+				"summer"/"winter"
+			}
+		}
+
+		client:
+			Plants[] p = PlantFactory.getPlants("summer");
+
+		----------------------------------------------------
+		
+
+		class Rectangle <T> {   ===> class Rectangle {
+			T width;						Object width;
+			T breadth; 						Object breadth;
+			///
+		}	
+
+		Rectangle<Integer> r1 = new Rectangle<Integer>(4,5);
+		Rectangle<Double> r2 = new Rectangle<Double>(1.4,3.5);
+		Rectangle<String r3 = new Rectangle<String>("A","B");
+
+
+		class Rectangle <T extends Number> {   ===> class Rectangle {
+			T width;										Number width;
+			T breadth; 										Number breadth;
+			///
+		}	
+
+	public interface Comparable {
+    	    public int compareTo(Object o);
+ 	}
+
+ 	class Mobile implements Comparable {
+
+ 		int compareTo(Object o) {
+ 			Mobile m = (Mobile) o;
+ 			if(this.price > m.price)//
+ 		}
+ 	}
+
+ 	====
+ 	public interface Comparable<T> {
+    	    public int compareTo(T o);
+ 	}
+
+ 	class Mobile implements Comparable<Mobile> {
+ 		int compare(Mobile o) {
+
+ 	}
+ 	=======================
+
+ 	interface Flyable {
+ 		void fly();
+ 	}
+
+ 	class Bird implements Flyable {
+ 		public void fly() { }
+ 	}
+
+ 	class AeroPlance implements Flyable {
+ 		public void fly() {}
+ 	}
+
+
+ 	Flyable f = new Bird();
+ 	Flyable f = new  Flyable(); // We can't instantiate and interface
+
+ 	UPto java 8 : PERMGEN ERROR
+ 	// Anonymous class
+ 	Flyable f = new  Flyable() {
+ 		public void fly() {}
+ 	};
+
+ 	Java 8 provided Lambda Expressions as a shortform for Anonymous class
+
+ 	Functional style of Programming uses High Order Functions:
+ 		High Order Functions are functions:
+ 			a) which accept other functions as arguments
+ 			b) Functions which return a function
+ 			==> Treat functions a first class members
+ 	======================================================================
+
+ 	Annotations: MetaData
+ 		A) Who uses it?
+ 			i) COMPILER
+ 			ii) CLASSLOADER
+ 			iii) RUNTIME
+
+ 			public class SomeClass {
+
+ 				@Mapping("/products")
+ 				void someMethod() {
+
+ 				}	
+ 			}
+
+ 		B) Where can I use it?
+ 			a) Type
+ 			b) fields
+ 			c) methods
+ 			d) constructors
+
+ 		Generate DDL and DML statements from annotations [ Simplar tp JPA/Hibernate]
+
+ 		@Table("books")
+ 		class Book {
+ 			@Column(name="book_id", type="NUMERIC(12)")
+ 			int bookId;
+ 			@Column(name="title")
+ 			String title;
+ 		}	
+
+
+ 		Annotations doesn't have fields/attributes/state/variable and methods
+ 		It can have only properties
+ 	====================================================
+
+ 		Java Collection Framework
+ 		-------------------------
+ 			provides datacontainers which can be used where arrays are nto feasable
+ 			a) interfaces 
+ 			b) implementation classes
+ 			c) algorithm classes [ Utility ]
+
+
+ 			List list = new ArrayList();
+
+ 			list.add("A");
+ 			list.add(33);
+
+ 			Always use Generics
+
+ 			TypeSafe
+ 			List<String> list = new ArrayList<>();
+ 			=============================================
+
+ 			Common high order functions of streams:
+ 				a) map
+ 				b) filter
+ 				c) reduce
+ 				d) flatMap
+ 				e) limit
+ 				f) skip
+ 				g) forEach
+
+
+ 			MAP ==> Transform
+ 			FILTER ==> filter based on predicate
+ 			REDUCE ==> Aggregate [count, sum, max, min, avg]
+ ==============================================================
+
+ 	Java 8 Lambda:?
+ 	Java 8 streams:
+ 	High Order Functions: 
+ 		Intermediary operations: skip, limitmap, filter, 
+ 		Terminal Operations: reduce, forEach, collect
+ 		streams are LAZY, until you connect terminal operator data won't flow
+
+ 	List interface
+
+ 	============
+ 	https://shrib.com/#banu
+
+
+ 	Arrays are Co-Variant
+ 	Generic Collections are not Co-variant
+ 	
+ 	Object o = new String(); // valid
+ 	
+ 	Object[] elems = new String[3];  // valid
+ 	elems[0] = new String("Hello");
+ 	elems[1] = new Date(); // ArrayStoreException
+
+ 	List<Object> elems = new ArrayList<String>();
+
+
+ Map is a key/value pair
+ key has to be unique
+
+ https://github.com/BanuPrakash/ADOBE_2019
+===================================================================
+	
+	Java Concurrency
+		Legacy Conncurency APIs
+
+		Thread, Runnable
+
+		interface Runnable {
+			void run();
+		}
+
+
+		Thread contains thread control methods:
+			start()
+			yield()
+			join()
+			interrupt()
+
+			stop()
+			suspend()
+			resume()
+	--------------------------------
+
+		Thread Safe:
+			Any member if it doesn't get corrupted in multi-threaded env is said to
+			be thread safe.
+
+			Local Variables ---> Stack --> Each thread has different stack --> Safe
+			instance var --> Heap --> Shared by threads --> Not Safe
+			static var --> class data --> Shared --> Not Safe
+			volatile var --> mark atomic var as volatile
+
+				long x = 10;
+
+				x++;
+
+		 synchronized uses built-in locks [ used to mark critical section]
+
+		 Issues with synchronized:
+		 	a) Lock per object
+		 		Account 
+		 				==> Profile Data
+		 				==> balace
+
+		 				synchronized updateProfle(User user) {
+
+		 				}
+
+		 				synchronized void deposit() {
+
+		 				}
+
+		 	b) Only owner can release the lock
+		 	c) Deadlocks
+		 	d) No Timeout
+		public class BankingService {
+			public void transferFunds(Account from, Account to, double amt) {
+				synchronized(from) {
+					synchronized(to) {
+						from.withdraw(amt);
+						to.deposit(amt);
+						//insert to tx table
+					}
+				}
+			}
+		}	
+
+		Instead of Synchronized we can use Lock APIs [ Java 5 version onwards]
+
+		Rentrant Locks:
+
+			public synchroized void one() {
+				two();
+			}
+
+			public synchroized void two() {
+
+			}
+
+		====
+		public class BankingService {
+			public void transferFunds(Account from, Account to, double amt) {
+				if(from.balanceLock.tryLock()) {
+					try{
+						if(to.balanceLock.tryLock(10,TimeUnit.SECONDS)) {
+							try {
+								from.withdraw(amt);
+								to.deposit(amt);
+								//insert to tx table
+							 } finally {
+							 	to.balanceLock.unlock();
+							 }
+						}
+					 }finally {
+					 	from.balanceLock.unlock();
+					 }
+				}
+			}
+		}	
+		===================
+
+		Limitations of Runnable interface
+			a) doesn't return a value
+			b) doesn't throw an exception
+
+			interface Runnable {
+				public void run() {
+
+				}
+			}
+
+			Solution:
+				use Callable and Future
+
+			interface Callable<T> {
+				T call() throws Exception;
+			}
+
+			Promise and Future
+				Promise is something which we get async
+
+		=================================
+		
+		Thread Pools
+			ExecutorService is used to create different types of Thread pools
+
+			Problem with using start() method		
+		=====================================================
+
+		AtomicVariables 
+
+	 	==========
+
+	 	Producer and Consumer scenario
+
+	 		class Buffer {
+	 			int data;
+	 			volatile boolean flag = false;
+	 			synchronized put(x) {
+	 				while(flag) {
+	 					wait()
+	 					flag = false;
+
+	 				}
+	 				data = x;
+	 				flag = true;
+	 				notify();
+	 			}	
+
+	 			get() {
+	 				while(!flag) {
+	 					wait();
+	 				}
+	 				flag= true;
+	 				notify();
+	 				return data;
+	 			}
+	 		}
+	 		class Cosnsumer implements Runnable {
+	 			loop
+	 				get()
+	 		}
+	 		class Producer implements Runnable {
+	 			loop
+	 				buffer.put(loopVar)
+	 		}
+=============================================================================
+	CountDownLatch wait for tasks
+	Similarly CyclicBarrier wait for threads
+		CountDownLatch latch = new CountDownLatch(3);
+			latch.countDown();
+
+			latch.await(); // waits for coutner to be ZERO
+		CyclicBarrier barrier = new CyclicBarrier(3);
+				each thread invokes 
+				barrier.await();
+
+		Exchanger<List<Product>> exhanger = new Exchanger<>();
+
+		class First implements Runnable {
+			List<Product> myCopy = ...
+			run() {
+				//
+
+				List<Product> copy = exchanger.exchange(myCopy);
+			}
+		}
+
+		class Second implements Runnable {
+			List<Product> myCopy = ...
+			run() {
+				//
+				List<Product> copy = exchanger.exchange(myCopy);
+			}
+
+		}
+
+		========
+			Fork Join Framework uses work stealing algorithm
+
+			https://github.com/BanuPrakash/ADOBE_2019
+		========
+
+		JDBC
+			Java Database Connectivity is an integration API to connect to RDBMS
+			JDBC provides interfaces
+			Implmentation classes are provided by database vendors
+
+			Steps:
+				// Factory Method
+			Connection con = DriverManager.getConnection(URL, USER, PWD);
+
+			Send SQL :
+				1) Statement
+					SQL is fixed
+					"select * from employees"
+				2) PreparedStatement
+					if SQL depends on IN parameters
+					"select * from users where username=? and password=?"
+				3) CallableStatement
+					to invoke Stored Procedure
+
+			ResultSet: Cursor to the snapshot of results based on query
+
+
+			interface UserDao {
+				register(User user);
+			}
+
+			public class UserDaoJdbcImpl implements UserDao {
+				register(User user) {
+					try{
+						INSERT SQL
+					} catch(SQLException ex) {}
+				}
+			}
+
+			public class UserDaoMonogoDbImpl implements UserDao {
+				register(User user) {
+						try{
+						INSERT SQL
+					} catch(MonngoException ex) {}
+				}
+			}
+			===
+
+			interface UserDao {
+				register(User user) throws SQLExcpetion;
+			}
+
+			public class UserDaoJdbcImpl implements UserDao {
+				register(User user)  throws SQLExcpetion{
+					 
+						INSERT SQL
+					 
+				}
+			}
+
+
+			=======
+			interface UserDao {
+				register(User user) throws PersistenceException
+			}
+
+			public class UserDaoJdbcImpl implements UserDao {
+				register(User user) throws PersistenceException{
+					try{
+						INSERT SQL
+					} catch(SQLException ex) {
+						throw new PersistenceException(....)
+					}
+				}
+			}
+
+			public class UserDaoMonogoDbImpl implements UserDao {
+				register(User user) throws PersistenceException{
+						try{
+						INSERT SQL
+					} catch(MonngoException ex) {}
+				}
+			}
+
+
+			create table products(id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double, category VARCHAR(50));
+	=======================================================================================
+
+		Traditional Web Application using JEE [ Enterprise Edition]
+
+		Web application:
+			JEE provides Servlet API [ Technology ]
+
+			void service(HttpServletRequest req, HttpSerrvletResponse res) ;
+									|
+									V
+			void doGet(HttpServletRequest req, HttpSerrvletResponse res) ;
+			void doPost(HttpServletRequest req, HttpSerrvletResponse res) ;
+			void doPut(HttpServletRequest req, HttpSerrvletResponse res) ;
+			void doDelete(HttpServletRequest req, HttpSerrvletResponse res) ;
+				....
+
+		MVC Architecture:
+			Model View Controller
+			Controller --> contains application logic [ use Servlets]
+			View --> Presenetation logic [ JSP / HTML]
+			Model --> Business Data and Business Logic [ entity / DAO/ ...]
+
+
+			MAven Goals: 
+				jetty:run
+
+				jetty:run -Djetty.http.port=9999
+	==========================================
+
+		Spring and JPA
+		--------------
+
+		ORM and JPA
+		Object Relational Mapping
+			class <---> RDBMS table
+			fields <---> columns
+			ORM's eliminates lot of plumbing code required for CRUD operations
+			eliminates any mismatch between Object Oriented and Relational database
+
+		class Employee 									class Laptop
+			id, name, email 								serialNo, make, config
+			Laptop laptop
+
+
+		Relational database 
+			Employee Table:
+			id | name | email | serailaNo | make | config
+
+			---
+
+			Employee Table 									Laptop Table
+			id | name | email | serailNo (FK)				serailNo | make | config
+
+
+		ORM Frameworks: 
+				Hibernate, TopLink, KODO, MyBatis, OpenJPA, ...
+		JPA --> Java Persisetence API is a spscification for ORM frameworks
+
+		---------
+
+		DataSource ---> EntityManagerFactory ---> EntityManager				
+
+		DataSource:
+			is a pool of database connections
+
+			EntityManagerFactory picks a connection from the pool, sets up the ORM provider
+			and creates EntityManager
+
+			Order
+				item1
+				item2
+				item3
+
+			Without cascade
+				save(order)
+				save(item1)
+				save(item2)
+				save(item3)
+
+				--
+
+				delete(item1)
+				delete(item2)
+				delete(item3)
+				delete(order)
+
+			With Cascade
+				save(order)
+				delete(order)
+	==========================================
+
+	Spring Framework
+		==> provides a lightweight container for building enterprise application
+
+		==> Servlet Engine is a container [ Heavy weight]
+			--> manages lifecycle of servlets/ requet/ response, etc
+
+	What does spring provide?
+		--> Manages life cycle of objects [ beans]	
+		--> wires dependendecnies [ Dependency Injection -- Inversion Of Control]
+
+	UI --> service --> DAO ---> Database connection
+
+	With DI the flow is inversed
+		UI <-- service <-- DAO <--- Database connection
+	-----------------
+		Spring creates objects which has one of these annotations
+		 @Component
+		 @Service
+		 @Repository
+		 @Controller
+		 @RestController
+
+		 @Component
+		 public class One {
+
+		 }
+
+		 @Repository
+		 public class ProductDaoJdbcImpl .. {
+
+		 }
+
+		 By default all objects spring framework creates are Singleton object
+
+		 @Repository
+		 @Scope("request")
+		 public class ProductDaoJdbcImpl .. {
+
+		 }
+
+		 @Scope("prototype")
+		 @Scope("session")
+
+
+		 beans.xml
+
+		 <beans>
+		 	<bean id="productDao" class=".....ProductDaoJpaImpl" />
+
+		 </beans>
+
+		 Spring supports Declarative and Distributed Transactions:
+
+		 Programmatic Transactions:
+
+		 public class BankingService {
+			public void transferFunds(Account from, Account to, double amt) {
+				Connection con = ...
+				try {
+					con.autoCommit(false);	 
+						PreparedStatement p1 -- from 
+						PreparedStatement p2 -- to account
+						PreparedStatement p3 -- Transaction table
+
+						p1.executeUpdate();
+						p2.executeUpdate();
+						p3.executeUpdate();
+					con.commit();
+				} catch(SQLException ex) {
+					con.rollback();
+				}
+			}
+		}	
+
+		With Spring Declarative Tx:
+		 public class BankingService {
+			@Transactional
+			public void transferFunds(Account from, Account to, double amt) {
+
+			}
+		}
+
+		==============
+
+		class SomeClass {
+
+		}
+
+		@Configuration
+		class Config {
+			@Bean
+			public SomeClass getSomeClass() {
+				SomeClass obj = new SomeClass();
+				obj.doThaT();
+				obj.doThis();
+				retunt obj;
+			}
+		}
+		@Service
+		class OtherClass {
+			@Autowired
+			SomeClass clzz;
+
+		}
+
+		===================
+
+		JPQL ==> Java Persistence Query Language
+
+	SQL 														JPQL
+	a) uses table and column names 						uses class and fields
+
+	select * from customers 							from Customer c where c.firstName='Raj'
+		where first_name='Raj'
+
+	b) not case sensitve 								class name and fields are 	sensitive
+
+	c) Not Polymorphic 									Polymorphic
+														from Product
+
+	 ==================
+
+	 Traditional Web Application
+	 Spring provides support for MVC
+
+
+	 @Controller
+	 public class ProductController {
+	 	@RequestMapping("getProducts.do")
+	 	String getProducts(Model model) {
+	 		model.addAttribute("products", orderServe.getAllProducts());
+	 		return "list.jsp"
+	 	}
+	 }
+=======================================
+
+	1) Need to Configure DispatcherServlet [ Provided by Spring Framework]
+		to handle certain types of URL (*.do)
+	2) Need to Link Servlet Engine with Spring Container
+		All these configurations were done in AppInitializer
+
+	Suppose if we don't use annotation based
+
+		If name given to DispatcherServlet is "controller"
+		then automitally it looks out for "controller-servlet.xml" file which contains 
+		spring related configuration
+	
+	3) Every request which ends with ".do" dispatcherServlet is intercepting
+		and looks out for classes which has "@Controller" or "@RestController"
+		for @RequestMapping
+	4) Controller classes [ Command classes ] invokes service --> DAO --> DB
+		and returns Model and View
+	5) DispatcherServlet redirects
+
+	--
+	AppConfig contains all our Spring related DataSource, TransactionMAnager and EntityManagerFactory
+
+	"applicationContext.xml"
+
+	================================================================================
+
+	RESTful Web Services:
+
+		Representational State Transfer
+
+		Resource --> resides on server [Database, Files, Tangible things like printer]
+		Resources can be served to clients in various representation 
+				==> XML, JSON, CSV, RSS
+
+		XML:
+			<products>
+				<product id="1">
+					<name>iPhone</name>
+				</product>
+				<product id="2">
+					<name>Sony</name>
+				</product>
+			</products>
+
+		JSON: JavaScript Object notation
+			[] array
+			{} object
+			JSON understands the following types : number, string, boolean, object
+			Its like key/value
+
+			[
+				{
+					id: 1,
+					name : 'iPhone'
+				},
+				{
+					id: 2,
+					name : 'Sony'
+				}
+
+			]
+		================
+		REST stds:
+			uses plural nouns for identifying resource [ URI ]
+			use verbs for actions [ HTTP methods] --> GET, POST, PUT , DELETE
+
+			GET --> fetch
+			POST --> create a sub resource
+			PUT / PATCH --> update a sub resource
+			DELETE --> delte a sub resource
+
+		GET
+			http://imdb.com/movies
+			get all movies
+
+		GET [ Path Parameter ]
+			http://imdb.com/movies/3
+			get movie whose id is 3
+
+		GET [ Query Parameter ]
+			http://imdb.com/movies?actor=Brad Pitt
+			get all movies acted by ...
+
+			http://imdb.com/movies?page=3&size=10
+
+		---
+		POST
+			http://imdb.com/movies
+
+			payload contains the movie record which has to be added to movies
+
+		---
+		PUT / PATCH
+			http://imdb.com/movies/3
+
+			payload contains the movie whose id is 3 to be updated 
+
+		-------
+		DELETE
+		http://imdb.com/movies/3
+				delete a movie whose id is 3
+
+	===================================================================
+	REST is limited to HTTP protocol
+		It depends on the following HTTP headers
+		accept : application / json
+			What representation server should sent to client
+		content-type: application /json
+			What representation client is sending to server
+	Spring provides Content Negotiation Handlers to convert 
+		JAVA <---> REPRESENTTION
+		These ContentNegotiationHandlers uses 3rd party libraries for Conversion
+
+		Json:
+			Jackson, Jettison, GSON, Moxy
+
+
+			http://imdb.com/api/movies/3
+
+		=========
+
+		Order JSON:
+
+			{
+				"customer" : {
+					"email" : "a@adobe.com"
+				},
+				"items" : [
+						{
+							"product" : {
+								"id" : 2
+							},
+							"qty" : 1,
+							"amount": 99000
+						},
+						{
+							"product" : {
+								"id" : 1
+							},
+							"qty" : 3,
+							"amount": 25000
+						}
+				]
+			}
+========================================================
+		@ResponseBody, @RequestBody, @RestController, ResponseEntity
+
+		AOP: Aspect Oriented Programming
+			reduces code tangling and code scattering
+
+			public class BankingService {
+			public void transferFunds(Account from, Account to, double amt) {
+				log.debug("entered transfer funds");
+				Connection con = ...
+				try {
+					con.autoCommit(false);	 
+						PreparedStatement p1 -- from 
+						PreparedStatement p2 -- to account
+						PreparedStatement p3 -- Transaction table
+
+						p1.executeUpdate();
+						log.debug("entered from updated");
+						p2.executeUpdate();
+						log.debug("entered to updated");
+						p3.executeUpdate();
+					con.commit();
+				} catch(SQLException ex) {
+					log.debug("exception");
+					con.rollback();
+				}
+			}
+		}	
+
+		AOP:
+			Aspect: A bit of concern which is a not a part of main logic, but can be 		used along with main logic
+						---> LoggingAspect
+						---> SecurityAspect
+						---> ProfileAspect 
+						---> TrannsactionAspect
+			JoinPoint: where aspect can be weaved
+					--> method
+					---> exception
+			PointCut: selected Joinpoints
+			Advice: 
+				--> Before
+				--> After
+				--> AfterReturning
+				--> Around
+				--> AfterThrowing
+========================================================================
+
+	Spring Boot :
+		built on top of Spring Framework
+		--> Simplifes development
+		--> Designed for Micro Services
+		--> Highly Opiniated
+				===> It assumes we use Hibernate for ORM
+				=== It assumes Tomcat is used as servlet engine
